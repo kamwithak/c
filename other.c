@@ -1,6 +1,6 @@
  #include <stdio.h>
 
-int mult(int x, int y); //that midget ish
+int mult(int x, int y); 
 
 int main()
 {
