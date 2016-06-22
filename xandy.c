@@ -2,7 +2,6 @@
 
 int main()
 {
-
 	int yage, numb;
 	char finitial, linitial, newline;
 	
@@ -36,5 +35,4 @@ int main()
 		}
 	
 	return 0;
-	
 }
