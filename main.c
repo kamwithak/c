@@ -2,15 +2,10 @@
 
 int main()
 {
-	//float nigger = 1313.141434;
-	//double niggerz = 2131.312312;
+
 	int yage, numb;
 	char finitial, linitial, newline;
-	
-	//printf("%.2lf\n", niggerz);
-	//printf("%.2f", nigger);
-	
-	
+
 	printf("First Initial: ");
 	scanf("%c%c", &finitial, &newline);
 
