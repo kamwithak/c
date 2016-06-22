@@ -1,4 +1,4 @@
-struct nigger{
+struct wassup {
 
 	int userID;
 	char firstName[20];
