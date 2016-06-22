@@ -3,16 +3,15 @@
 
 int main()
 {
-	int nigger = 12;
-	struct nigger kamran;
+	int wassup = 12;
+	struct wassup kamran;
 	printf("Memory Address \t \t Name \t\t Value \n");
 	
-	int * pNigger = nigger;
+	int *pwassup = wassup;
 	
-	printf("%p \t %s \t %d \n", pNigger, "nigger", nigger);
-	printf("%p \t %s \t %p \n", &pNigger, "pNigger", pNigger);
+	printf("%p \t %s \t %d \n", pwassup, "wassup", wassup);
+	printf("%p \t %s \t %p \n", &pwassup, "pwassup", pwassup);
 	
-	//begin assigning variablets to the variable (database) "nigger"
 
 	printf("Input a 4 digit #: ");
 	scanf("%d", &kamran.userID);
