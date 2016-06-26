@@ -1,4 +1,5 @@
 #include <stdio.h>
+//terminal pyramid 
 int main()
 {
     int i,space,rows,k=0;
