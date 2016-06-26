@@ -12,7 +12,7 @@ int main()
   getchar(); 
 }
 
-int mult (int x, int y) // include data types for creation of function
+int mult (int x, int y) // include data types when creating function
 {
   return x * y;
 }
