@@ -1,6 +1,6 @@
  #include <stdio.h>
 
-int mult(int x, int y); 
+int mult(int x, int y);  //include data types in function prototype
 
 int main()
 {
@@ -8,11 +8,11 @@ int main()
   printf( "Please input two numbers to be multiplied: " );
   scanf( "%d", &x );
   scanf( "%d", &y );
-  printf( "The product of your two numbers is %d\n", mult(x,y) );
+  printf( "The product of your two numbers is %d\n", mult(x,y) ); // dont include datatypes when calling function
   getchar(); 
 }
 
-int mult (int x, int y)
+int mult (int x, int y) // include data types for creation of function
 {
   return x * y;
 }
