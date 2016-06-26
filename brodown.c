@@ -1,6 +1,6 @@
 #include <stdio.h>
 // change ordering of functions, put all of contents of main() into another function called init()
-int brodown();
+int brodown(); //function prototype
 int main()
 {
     int agree;
