@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-//username and password logger
+//username and password logger...
 void intro() {
 
   char message[] = "\n       Social Media Account Logger...";
