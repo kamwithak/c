@@ -16,8 +16,7 @@ int init()
 	printf("Would you like to play?  Yes = 1  No = 2\n");
 	scanf("%d", &agree);
 	if(agree == 1) {
-		//the offerings 
-		printf("Lets play!\n");
+		printf("Lets play! Hit ENTER!\n");
 		getchar();
 		brodown(); //the launch
 	} else if(agree == 2){
