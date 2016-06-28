@@ -1,24 +1,34 @@
 #include <stdio.h>
 // change ordering of functions, put all of contents of main() into another function called init()
-int brodown(); //function prototype
+int brodown(); //function prototypes
+int init();
+
 int main()
 {
-    int agree;
-		printf("The goal of this game is to get 10 Bro Downs....\n");
-		args:
-		printf("Would you like to play?  Yes = 1  No = 2\n");
-		scanf("%d", &agree);
-			if(agree == 1) {
-				//the offerings 
-				printf("Lets play!\n");
-				getchar();
-				brodown(); //the launch
-			} else if(agree == 2)
-				return 0;
-			else { 
-				printf("Incorrect Input... \n");
-				goto args;
-			}
+	init();
+	brodown();
+	return 0;
+}
+int init()
+{
+  int agree;
+	printf("The goal of this game is to get 10 Bro Downs....\n");
+	args:
+	printf("Would you like to play?  Yes = 1  No = 2\n");
+	scanf("%d", &agree);
+	if(agree == 1) {
+		//the offerings 
+		printf("Lets play!\n");
+		getchar();
+		brodown(); //the launch
+	} else if(agree == 2){
+		return 0;
+	} else { 
+	printf("Incorrect Input... \n");
+	goto args;
+	}	
+	
+	
 }
 int brodown() //the program
 {
