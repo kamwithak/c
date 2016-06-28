@@ -1,8 +1,7 @@
 #include <stdio.h>
-// change ordering of functions, put all of contents of main() into another function called init()
-int brodown(); //function prototypes
-int init();
-
+int brodown(); // function 
+int init(); // prototypes
+// edited on the 27th of June, 2016
 int main()
 {
 	init();
@@ -27,8 +26,6 @@ int init()
 	printf("Incorrect Input... \n");
 	goto args;
 	}	
-	
-	
 }
 int brodown() //the program
 {
@@ -46,6 +43,6 @@ int brodown() //the program
 			getchar();
 		}
 	}
-		getchar(); //new character
+	getchar(); //new character
     return 0;
 }
