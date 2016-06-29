@@ -1,6 +1,6 @@
 #include <stdio.h>
-int brodown(); // function 
-int init(); // prototypes
+int brodown(); // function ...
+int init(); // prototypes lol
 // edited on the 27th of June, 2016
 int main()
 {
