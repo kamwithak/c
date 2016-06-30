@@ -28,7 +28,7 @@ time.sleep(0.6)
 symbol= raw_input('Enter the ticker symbol: ')
 exchange = raw_input('Enter the exchange: ')
     #  symbol = "rbs"
-    #  exchange = "lon" // way google is...
+    #  exchange = "lon" 
 while True:
     t, l = fetchPreMarket(symbol,exchange)
     if(l!=p0):
