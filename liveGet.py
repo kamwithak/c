@@ -25,7 +25,7 @@ def fetchPreMarket(symbol, exchange):
 p0 = 0
 time.sleep(0.6)
 
-symbol= raw_input('Enter the ticker symbol: ')
+symbol = raw_input('Enter the ticker symbol: ')
 exchange = raw_input('Enter the exchange: ')
     #  symbol = "rbs"
     #  exchange = "lon" 
