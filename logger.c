@@ -16,7 +16,7 @@ int init() {
   FILE *logger;
   logger = fopen("log.txt", "w");
     //how many accounts do you wana log?
-    printf("How many accounts would you like to record? (0 to 10) (0 = EXIT)\n(INPUT INTEGER) // ");
+    printf("How many accounts would you like to record? (1 to 10) (0 = EXIT)\n(INPUT INTEGER) // ");
     scanf("%d", &limit);
 
     if (limit == 0) {
