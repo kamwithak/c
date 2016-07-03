@@ -88,7 +88,7 @@ int atm(int option) {
 
 int write() {   //create an account
 
-  char user[20], pwd[20], line[256];
+  char user[50], pwd[50], line[50];
   printf("\nUsername: ");
   scanf("%s", user);
   printf("Password: ");
