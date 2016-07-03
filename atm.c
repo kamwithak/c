@@ -3,9 +3,9 @@
 #include <string.h>
 
 int atm(int option);
-void options();
 int write();
 int read();
+void options();
 void login();
 void init();
 
