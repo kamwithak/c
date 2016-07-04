@@ -12,11 +12,10 @@ void init();
 int main(void) {
 
   init();
-
   return (0);
 
 }
-//WAS GUCCI?
+
 void init() {
 
   char pw[20];
@@ -109,7 +108,6 @@ int write() {   //create an account
 int read() {   //sign in
 
   char user[50], pwd[50], line[50];
-//  char USER[50], PWD[50];
   printf("\nUsername: ");
   scanf("%s", user);
   printf("Password: ");
@@ -118,17 +116,12 @@ int read() {   //sign in
   FILE *info;
   info = fopen("info.csv", "r");
 
-
   while (fgets(line, sizeof(line), info) != NULL) {
 
-    char *p = strtok(line, ",");
+    char *USER = strtok(line, ",");
+    char *PASS = strtok(NULL, ",");
 
-      while(p) {
-
-        printf("%s\n", p);
-        p = strtok(NULL, ",");
-
-      }
+      printf("user- %s\n", USER);
 
   }
 
