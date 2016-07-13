@@ -4,7 +4,7 @@
 
 int framework(int option);
 void read();
-int loggedIn();
+void loggedIn();
 void write();
 void options();
 void login();
@@ -28,7 +28,7 @@ void init() {
   printf("\nWHAT IS THE START-UP ATM KEY?\n -> ");
   scanf("%s", pw);
 
-    if (strcmp(pw, "885265om") == 0) {  // strcmp() returns 0 iff pw = "885265om"
+    if (strcmp(pw, "1234") == 0) {  // strcmp() returns 0 iff pw = "885265om"
 
       system("clear");
       options();
@@ -51,17 +51,17 @@ void options() {
 
     if (option == 3) {
 
-      system("clear");
+  //    system("clear");
       exit(EXIT_SUCCESS);  //sys.exit() equivalent
 
     } else if (option == 1 || option == 2){
 
-      system("clear");
+//      system("clear");
       framework(option);  //calling framework for atm
 
     } else {
 
-      system("clear");
+//      system("clear");
       goto stop;
 
     }
@@ -84,31 +84,23 @@ int framework(int option) {
 
 }
 
-int loggedIn() {
-
-  printf("Successfully Logged in!\n");
-  printf("------------------------\n");
-  return (0);
-
-}
-
 void write() {   //create an account
 
   char user[50], pwd[50];
   char extra[] = "\0";
   printf("\nUsername: ");
   scanf("%s", user);
-  printf("Password: ");
+  printf("PIN #: ");
   scanf("%s", pwd);
 
   FILE *info;
   info = fopen("info.csv", "a");
 
   fprintf(info, "%s,%s,%s\n", user, pwd, extra);
-
   fclose(info);
+  printf("\nSuccesfully Created Account!\n");
 
-  system("clear");
+//  system("clear");
 
   options();
 
@@ -121,10 +113,10 @@ void read() {   //sign in
   tRestart:
   printf("\nUsername: ");
   scanf("%s", user);
-  printf("Password: ");
+  printf("PIN #: ");
   scanf("%s", pwd);
 
-  system("clear");
+  //system("clear");
 
   FILE *info;
   info = fopen("info.csv", "r");
@@ -145,7 +137,7 @@ void read() {   //sign in
           fclose(info);
           system("clear");
           loggedIn();
-          exit(EXIT_SUCCESS);
+          exit(EXIT_SUCCESS); //to leave a funtion in this case
 
         } else {
 
@@ -157,7 +149,15 @@ void read() {   //sign in
 
   fclose(info);
   // program only goes past this point iff program goes through entire file and zero matches are found
-  printf("\nINVALID USERNAME OR PASSWORD, TRY AGAIN...\n");
+  printf("\nINVALID USERNAME OR PIN #, TRY AGAIN...\n");
   goto tRestart;
+
+}
+
+void loggedIn() {
+
+  printf("Successfully Logged in!\n");
+  printf("----------$$$----------\n");
+  getchar();
 
 }
