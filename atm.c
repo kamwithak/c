@@ -1,10 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-//hurhur
-int atm(int option);
-int write();
-int read();
+
+int framework(int option);
+void read();
+int loggedIn();
+void write();
 void options();
 void login();
 void init();
@@ -27,16 +28,14 @@ void init() {
   printf("\nWHAT IS THE START-UP ATM KEY? \n -> ");
   scanf("%s", pw);
 
-  system("clear");
-
     if (strcmp(pw, "885265om") == 0) {  // strcmp() returns 0 iff pw = "885265om"
 
+      system("clear");
       options();
 
     } else {
 
-      printf("\nINVALID KEY... \nEXITING ATM SIMULATION ~\n\n");
-      system("clear");
+      printf("\nINVALID START-UP KEY...\nRESTART TO TRY AGAIN ~ \n\n");
       exit(EXIT_SUCCESS);
 
     }
@@ -59,7 +58,7 @@ void options() {
     } else if (option == 1 || option == 2){
 
       system("clear");
-      atm(option);  //calling framework for atm
+      framework(option);  //calling framework for atm
 
     } else {
 
@@ -69,7 +68,7 @@ void options() {
 
 }
 
-int atm(int option) {
+int framework(int option) {
 
     if (option == 1) {
 
@@ -85,9 +84,17 @@ int atm(int option) {
 
 }
 
-int write() {   //create an account
+int loggedIn() {
 
-  char user[50], pwd[50], line[50];
+  printf("Successfully Logged in!!\n");
+  return (0);
+
+}
+
+void write() {   //create an account
+
+  char user[50], pwd[50];
+  char extra[] = "\0";
   printf("\nUsername: ");
   scanf("%s", user);
   printf("Password: ");
@@ -96,16 +103,18 @@ int write() {   //create an account
   FILE *info;
   info = fopen("info.csv", "a");
 
-  fprintf(info, "\n%s,%s\n", user, pwd);
+  fprintf(info, "%s,%s,%s\n", user, pwd, extra);
 
   fclose(info);
-  return 0;
 
   system("clear");
 
+  options();
+
+
 }
 
-int read() {   //sign in
+void read() {   //sign in
 
   char user[50], pwd[50], line[50];
   printf("\nUsername: ");
@@ -119,16 +128,31 @@ int read() {   //sign in
   while (fgets(line, sizeof(line), info) != NULL) {
 
     char *USER = strtok(line, ",");
-    char *PASS = strtok(NULL, ",");
+    char *PASSER = strtok(NULL, ",");
 
-      printf("user- %s\n", USER);
+      int mUsername = strcmp(user, USER);
+      int mPassword = strcmp(pwd, PASSER);  //return value of 0 iff == 0
+
+  //    printf("%d username: %s\n", mUsername, USER);      ~ method of login system ~
+  //    printf("%d password: %s\n", mPassword, PASSER);    ~ strcmp return value and string organized in a nice terminal ~
+
+
+        if (mUsername == 0 && mPassword == 0) {
+
+          fclose(info);
+          loggedIn();
+
+        } else {
+
+        continue;
+
+        }
 
   }
 
   fclose(info);
+  // only prints if program goes through entire file and zero matches are found
+  printf("\nINVALID USERNAME OR PASSWORD... EXITING...\n");
 
-  return 0;
-
-  system("clear");
 
 }
