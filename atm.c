@@ -20,12 +20,12 @@ int main(void) {
 void init() {
 
   char pw[20];
-
+  iRestart:
   system("clear");
 
   printf("\nWELCOME TO THE CHOUDHRY CONSOLIDATED ATM!\n");
   printf("_________________________________________\n");
-  printf("\nWHAT IS THE START-UP ATM KEY? \n -> ");
+  printf("\nWHAT IS THE START-UP ATM KEY?\n -> ");
   scanf("%s", pw);
 
     if (strcmp(pw, "885265om") == 0) {  // strcmp() returns 0 iff pw = "885265om"
@@ -35,8 +35,7 @@ void init() {
 
     } else {
 
-      printf("\nINVALID START-UP KEY...\nRESTART TO TRY AGAIN ~ \n\n");
-      exit(EXIT_SUCCESS);
+      goto iRestart;
 
     }
 
@@ -62,6 +61,7 @@ void options() {
 
     } else {
 
+      system("clear");
       goto stop;
 
     }
@@ -86,7 +86,8 @@ int framework(int option) {
 
 int loggedIn() {
 
-  printf("Successfully Logged in!!\n");
+  printf("Successfully Logged in!\n");
+  printf("------------------------\n");
   return (0);
 
 }
@@ -117,10 +118,13 @@ void write() {   //create an account
 void read() {   //sign in
 
   char user[50], pwd[50], line[50];
+  tRestart:
   printf("\nUsername: ");
   scanf("%s", user);
   printf("Password: ");
   scanf("%s", pwd);
+
+  system("clear");
 
   FILE *info;
   info = fopen("info.csv", "r");
@@ -136,11 +140,12 @@ void read() {   //sign in
   //    printf("%d username: %s\n", mUsername, USER);      ~ method of login system ~
   //    printf("%d password: %s\n", mPassword, PASSER);    ~ strcmp return value and string organized in a nice terminal ~
 
-
         if (mUsername == 0 && mPassword == 0) {
 
           fclose(info);
+          system("clear");
           loggedIn();
+          exit(EXIT_SUCCESS);
 
         } else {
 
@@ -151,8 +156,8 @@ void read() {   //sign in
   }
 
   fclose(info);
-  // only prints if program goes through entire file and zero matches are found
-  printf("\nINVALID USERNAME OR PASSWORD... EXITING...\n");
-
+  // program only goes past this point iff program goes through entire file and zero matches are found
+  printf("\nINVALID USERNAME OR PASSWORD, TRY AGAIN...\n");
+  goto tRestart;
 
 }
