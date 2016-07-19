@@ -28,7 +28,7 @@ void init() {
   printf("\nWHAT IS THE START-UP ATM KEY?\n -> ");
   scanf("%s", pw);
 
-    if (strcmp(pw, "1234") == 0) {  // strcmp() returns 0 iff pw = "885265om"
+    if (strcmp(pw, "885265om") == 0) {  // strcmp() returns 0 iff pw = "885265om"
 
       system("clear");
       options();
@@ -51,10 +51,10 @@ void options() {
 
     if (option == 3) {
 
-  //    system("clear");
+      system("clear");
       exit(EXIT_SUCCESS);  //sys.exit() equivalent
 
-    } else if (option == 1 || option == 2){
+    } else if (option == 1 || option == 2) {
 
 //      system("clear");
       framework(option);  //calling framework for atm
@@ -87,7 +87,6 @@ int framework(int option) {
 void write() {   //create an account
 
   char user[50], pwd[50];
-  char extra[] = "\0";
   printf("\nUsername: ");
   scanf("%s", user);
   printf("PIN #: ");
@@ -96,14 +95,13 @@ void write() {   //create an account
   FILE *info;
   info = fopen("info.csv", "a");
 
-  fprintf(info, "%s,%s,%s\n", user, pwd, extra);
+  fprintf(info, "%s,%s,%s\n", user, pwd, "\0");
   fclose(info);
   printf("\nSuccesfully Created Account!\n");
 
 //  system("clear");
 
   options();
-
 
 }
 
@@ -149,6 +147,7 @@ void read() {   //sign in
 
   fclose(info);
   // program only goes past this point iff program goes through entire file and zero matches are found
+  system("clear");
   printf("\nINVALID USERNAME OR PIN #, TRY AGAIN...\n");
   goto tRestart;
 
@@ -156,8 +155,12 @@ void read() {   //sign in
 
 void loggedIn() {
 
-  printf("Successfully Logged in!\n");
+  printf("\nSuccessfully Logged in!\n");
   printf("----------$$$----------\n");
   getchar();
 
 }
+
+// the next step -> chequings and savings,
+// enter starting amount for each account. -> withdrawal/deposit option -> choose one or both, print final balance of overall account
+// sign out to main menu.
