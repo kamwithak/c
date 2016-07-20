@@ -3,6 +3,8 @@
 #include <string.h>
 
 int framework(int option);
+void withdraw();
+void proposal();
 void read();
 void loggedIn();
 void write();
@@ -135,7 +137,7 @@ void read() {   //sign in
           fclose(info);
           system("clear");
           loggedIn();
-          exit(EXIT_SUCCESS); //to leave a funtion in this case
+          exit(EXIT_SUCCESS); //to leave the loop
 
         } else {
 
@@ -155,12 +157,55 @@ void read() {   //sign in
 
 void loggedIn() {
 
-  printf("\nSuccessfully Logged in!\n");
-  printf("----------$$$----------\n");
-  getchar();
+  printf("\n Authentication Successful");
+  printf("\n     Bank Account ATM");
+  printf("\n  ----------$$$----------\n\n");
+
+  double iChequing;
+  double iSavings;
+
+  printf("What is the INITIAL VALUE for each type of account?\n\nCHEQUINGS -> $");
+  scanf("%lf", &iChequing);
+
+  printf("SAVINGS -> $");
+  scanf("%lf", &iSavings);
+
+  double total = iChequing + iSavings;
+  printf("TOTAL INITIAL VALUE -> $%.2lf\n", total);
+
+  proposal();
 
 }
 
-// the next step -> chequings and savings,
-// enter starting amount for each account. -> withdrawal/deposit option -> choose one or both, print final balance of overall account
-// sign out to main menu.
+void proposal() {
+
+  int CHOICE;
+
+  printf("\nWould you like to WITHDRAW or DEPOSIT?\n");
+  printf("      1 = WITHDRAW  2 = DEPOSIT\n\n -> ");
+  scanf("%d", &CHOICE);
+
+  if (CHOICE == 1) {
+
+    withdraw(); //currently working on
+
+  } else if (CHOICE == 2) {
+
+//    deposit(); finish this next
+
+  } else {
+
+// exit back to main menu, do this after
+
+  }
+
+}
+
+void withdraw() {
+
+// bring the variables into this function using arguments -> conduct transaction -> sperate function that prints final balance
+// -> option to perform another transaction or main menu
+
+printf("success\n");
+
+}
