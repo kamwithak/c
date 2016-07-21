@@ -58,12 +58,12 @@ void options() {
 
     } else if (option == 1 || option == 2) {
 
-//      system("clear");
+      system("clear");
       framework(option);  //calling framework for atm
 
     } else {
 
-//      system("clear");
+      system("clear");
       goto stop;
 
     }
@@ -89,19 +89,21 @@ int framework(int option) {
 void write() {   //create an account
 
   char user[50], pwd[50];
+  printf("MENU ~ CREATE AN ACCOUNT\n");
+  printf("------------------------");
   printf("\nUsername: ");
   scanf("%s", user);
   printf("PIN #: ");
   scanf("%s", pwd);
 
   FILE *info;
-  info = fopen("info.csv", "a");
+  info = fopen("accounts.csv", "a");
 
   fprintf(info, "%s,%s,%s\n", user, pwd, "\0");
   fclose(info);
-  printf("\nSuccesfully Created Account!\n");
+  system("clear");
 
-//  system("clear");
+  printf("\nSuccesfully Created Account! ~ \n");
 
   options();
 
@@ -110,16 +112,18 @@ void write() {   //create an account
 void read() {   //sign in
 
   char user[50], pwd[50], line[50];
+  printf("MENU ~ SIGN IN\n");
+  printf("--------------");
   tRestart:
   printf("\nUsername: ");
   scanf("%s", user);
   printf("PIN #: ");
   scanf("%s", pwd);
 
-  //system("clear");
+  system("clear");
 
   FILE *info;
-  info = fopen("info.csv", "r");
+  info = fopen("accounts.csv", "r");
 
   while (fgets(line, sizeof(line), info) != NULL) {
 
@@ -157,14 +161,14 @@ void read() {   //sign in
 
 void loggedIn() {
 
-  printf("\n Authentication Successful");
-  printf("\n     Bank Account ATM");
-  printf("\n  ----------$$$----------\n\n");
+  printf("\n * Authentication Successful *");
+  printf("\n  * Welcome to the C.C ATM! *");
+  printf("\n    ----------$$$----------\n\n");
 
   double iChequing;
   double iSavings;
 
-  printf("What is the INITIAL VALUE for each type of account?\n\nCHEQUINGS -> $");
+  printf("What is your INITIAL VALUE for each account?\n\nCHEQUINGS -> $");
   scanf("%lf", &iChequing);
 
   printf("SAVINGS -> $");
