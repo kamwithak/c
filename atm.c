@@ -3,8 +3,8 @@
 #include <string.h>
 
 int framework(int option);
-void withdraw();
-void proposal();
+void withdraw(float iSavings, float iChequings);
+void proposal(float iSavings, float iChequings);
 void read();
 void loggedIn();
 void write();
@@ -165,23 +165,23 @@ void loggedIn() {
   printf("\n  * Welcome to the C.C ATM! *");
   printf("\n    ----------$$$----------\n\n");
 
-  double iChequing;
-  double iSavings;
+  float iChequings;
+  float iSavings;
 
-  printf("What is your INITIAL VALUE for each account?\n\nCHEQUINGS -> $");
-  scanf("%lf", &iChequing);
+  printf("What is the INITIAL VALUE for each account?\n\nCHEQUINGS -> $");
+  scanf("%f", &iChequings);
 
   printf("SAVINGS -> $");
-  scanf("%lf", &iSavings);
+  scanf("%f", &iSavings);
 
-  double total = iChequing + iSavings;
-  printf("TOTAL INITIAL VALUE -> $%.2lf\n", total);
+  float iTotal = iChequings + iSavings;
+  printf("TOTAL INITIAL VALUE -> $%.2f\n", iTotal);
 
-  proposal();
+  proposal(iSavings, iChequings);
 
 }
 
-void proposal() {
+void proposal(float iSavings, float iChequings) {
 
   int CHOICE;
 
@@ -191,7 +191,7 @@ void proposal() {
 
   if (CHOICE == 1) {
 
-    withdraw(); //currently working on
+    withdraw(iSavings, iChequings); //currently working on
 
   } else if (CHOICE == 2) {
 
@@ -205,11 +205,15 @@ void proposal() {
 
 }
 
-void withdraw() {
+void withdraw(float iSavings, float iChequings) {
 
 // bring the variables into this function using arguments -> conduct transaction -> sperate function that prints final balance
 // -> option to perform another transaction or main menu
 
-printf("success\n");
+  float nSavings, nChequings, nTotal;
+
+  //printf("How much would you like to withdraw?");
+
+  printf("%.2f\n", iChequings);
 
 }
