@@ -2,9 +2,15 @@
 #include <stdlib.h>
 #include <string.h>
 
+/* LOGIN SYSTEM, ATM SIMULATION, MANIPULATION OF FILE I/O USING C
+~ KAMRAN WITH A K, LAST UPDATED JULY 21st, 2016 ~  */
+
 int framework(int option);
 void withdraw(float iSavings, float iChequings);
+void deposit(float iSavings, float iChequings);
 void proposal(float iSavings, float iChequings);
+void finalInfo();
+void receipt();
 void read();
 void loggedIn();
 void write();
@@ -96,11 +102,11 @@ void write() {   //create an account
   printf("PIN #: ");
   scanf("%s", pwd);
 
-  FILE *info;
-  info = fopen("accounts.csv", "a");
+  FILE *file;
+  file = fopen("accounts.csv", "a");
 
-  fprintf(info, "%s,%s,%s\n", user, pwd, "\0");
-  fclose(info);
+  fprintf(file, "%s,%s,%s\n", user, pwd, "\0");
+  fclose(file);
   system("clear");
 
   printf("\nSuccesfully Created Account! ~ \n");
@@ -122,10 +128,10 @@ void read() {   //sign in
 
   system("clear");
 
-  FILE *info;
-  info = fopen("accounts.csv", "r");
+  FILE *file;
+  file = fopen("accounts.csv", "r");
 
-  while (fgets(line, sizeof(line), info) != NULL) {
+  while (fgets(line, sizeof(line), file) != NULL) {
 
     char *USER = strtok(line, ",");
     char *PASSER = strtok(NULL, ",");
@@ -138,10 +144,10 @@ void read() {   //sign in
 
         if (mUsername == 0 && mPassword == 0) {
 
-          fclose(info);
+          fclose(file);
           system("clear");
           loggedIn();
-          exit(EXIT_SUCCESS); //to leave the loop
+          exit(EXIT_SUCCESS); //to leave function
 
         } else {
 
@@ -151,7 +157,7 @@ void read() {   //sign in
 
   }
 
-  fclose(info);
+  fclose(file);
   // program only goes past this point iff program goes through entire file and zero matches are found
   system("clear");
   printf("\nINVALID USERNAME OR PIN #, TRY AGAIN...\n");
@@ -168,15 +174,15 @@ void loggedIn() {
   float iChequings;
   float iSavings;
 
-  printf("What is the INITIAL VALUE for each type of account?\n\nCHEQUINGS -> $");
+  printf("What is your INITIAL VALUE for each type of account?\n\nCHEQUINGS -> $");
   scanf("%f", &iChequings);
 
   printf("SAVINGS -> $");
   scanf("%f", &iSavings);
-  printf("~~~~~~~~~~~~~~~~~\n");
+  printf("~~~~~~~~~~~~~~~~~~~~~~\n");
 
   float iTotal = iChequings + iSavings;
-  printf("TOTAL INITIAL VALUE -> $%.2f\n", iTotal);
+  printf("INITIAL ACCOUNT VALUE -> $%.2f\n", iTotal);
 
   proposal(iSavings, iChequings);
 
@@ -192,11 +198,11 @@ void proposal(float iSavings, float iChequings) {
 
   if (CHOICE == 1) {
 
-    withdraw(iSavings, iChequings); //currently working on
+    withdraw(iSavings, iChequings);
 
   } else if (CHOICE == 2) {
 
-//    deposit(); finish this next
+    deposit(iSavings, iChequings);
 
   } else {
 
@@ -222,17 +228,17 @@ void withdraw(float iSavings, float iChequings) {
 
   if (CHOICE == 1) {
 
-    printf("\nHow much?\n -> $");
+    printf("\nHow much?\n\n -> $");
     scanf("%f", &subChequings);
     nChequings = iChequings - subChequings;
-    printf("\nNew CHEQUINGS account value: %.2f\n", nChequings);
+    //printf("\nNew CHEQUINGS account value: %.2f\n", nChequings);
 
   } else if (CHOICE == 2) {
 
-    printf("\nHow much?\n -> $");
+    printf("\nHow much?\n\n -> $");
     scanf("%f", &subSavings);
     nSavings = iSavings - subSavings;
-    printf("\nNew SAVINGS account value: %.2f\n", nSavings);
+    //printf("\nNew SAVINGS account value: %.2f\n", nSavings);
 
   } else {
 
@@ -241,3 +247,55 @@ void withdraw(float iSavings, float iChequings) {
   }
 
 }
+
+void deposit(float iSavings, float iChequings) {
+
+// bring the variables into this function using arguments -> conduct transaction -> sperate function that prints final balance
+// -> option to perform another transaction or main menu
+
+  int CHOICE;
+  char calculation[] = "DEPOSIT";
+  float addSavings, addChequings;
+  float nSavings, nChequings, nTotal;
+
+  printf("\nWhich account would you like to %s money into?\n", calculation);
+  printf("      1 = CHEQUINGS  2 = SAVINGS\n\n -> ");
+  scanf("%d", &CHOICE);
+
+  if (CHOICE == 1) {
+
+    printf("\nHow much?\n\n -> $");
+    scanf("%f", &addChequings);
+    nChequings = iChequings + addChequings;
+    //printf("\nNew CHEQUINGS account value: %.2f\n", nChequings);
+
+  } else if (CHOICE == 2) {
+
+    printf("\nHow much?\n\n -> $");
+    scanf("%f", &addSavings);
+    nSavings = iSavings + addSavings;
+    //printf("\nNew SAVINGS account value: %.2f\n", nSavings);
+
+  } else {
+
+    exit(EXIT_FAILURE);
+
+  }
+
+}
+
+void finalInfo() {
+
+  //display all information of new account balances in terminal using for loop
+  //"CURRENT ACCOUNT VALUE", keep things consistent
+  //arguments needed before anything else
+
+}
+
+void receipt() {
+
+  //create a file (.txt) receipt for transaction and create that in a specific directory
+
+}
+
+  //figure out way to add a "make another transaction" feature. ex) goto
