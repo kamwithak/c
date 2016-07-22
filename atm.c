@@ -145,7 +145,7 @@ void read() {   //sign in
 
         } else {
 
-        continue;
+          continue;
 
         }
 
@@ -168,11 +168,12 @@ void loggedIn() {
   float iChequings;
   float iSavings;
 
-  printf("What is the INITIAL VALUE for each account?\n\nCHEQUINGS -> $");
+  printf("What is the INITIAL VALUE for each type of account?\n\nCHEQUINGS -> $");
   scanf("%f", &iChequings);
 
   printf("SAVINGS -> $");
   scanf("%f", &iSavings);
+  printf("~~~~~~~~~~~~~~~~~\n");
 
   float iTotal = iChequings + iSavings;
   printf("TOTAL INITIAL VALUE -> $%.2f\n", iTotal);
@@ -210,10 +211,33 @@ void withdraw(float iSavings, float iChequings) {
 // bring the variables into this function using arguments -> conduct transaction -> sperate function that prints final balance
 // -> option to perform another transaction or main menu
 
+  int CHOICE;
+  char calculation[] = "WITHDRAW";
+  float subSavings, subChequings;
   float nSavings, nChequings, nTotal;
 
-  //printf("How much would you like to withdraw?");
+  printf("\nWhich account would you like to %s from?\n", calculation);
+  printf("      1 = CHEQUINGS  2 = SAVINGS\n\n -> ");
+  scanf("%d", &CHOICE);
 
-  printf("%.2f\n", iChequings);
+  if (CHOICE == 1) {
+
+    printf("\nHow much?\n -> $");
+    scanf("%f", &subChequings);
+    nChequings = iChequings - subChequings;
+    printf("\nNew CHEQUINGS account value: %.2f\n", nChequings);
+
+  } else if (CHOICE == 2) {
+
+    printf("\nHow much?\n -> $");
+    scanf("%f", &subSavings);
+    nSavings = iSavings - subSavings;
+    printf("\nNew SAVINGS account value: %.2f\n", nSavings);
+
+  } else {
+
+    exit(EXIT_FAILURE);
+
+  }
 
 }
