@@ -3,9 +3,13 @@
 #include <string.h>
 
 /* LOGIN SYSTEM, ATM SIMULATION, MANIPULATION OF FILE I/O USING C
-~ KAMRAN WITH A K, LAST UPDATED JULY 21st, 2016 ~  */
+~ KAMRAN WITH A K, LAST UPDATED JULY 24th, 2016 ~  */
 
 int framework(int option);
+float add_to_chequings(float nChequings, float iChequings, float addChequings);
+float add_to_savings(float nSavings, float iSavings, float addSavings);
+float sub_from_chequings(float nChequings, float iChequings, float subChequings);
+float sub_from_savings(float nSavings, float iSavings, float subSavings);
 void withdraw(float iSavings, float iChequings);
 void deposit(float iSavings, float iChequings);
 void proposal(float iSavings, float iChequings);
@@ -36,7 +40,7 @@ void init() {
   printf("\nWHAT IS THE START-UP ATM KEY?\n -> ");
   scanf("%s", pw);
 
-    if (strcmp(pw, "885265om") == 0) {  // strcmp() returns 0 iff pw = "885265om"
+    if (strcmp(pw, "885265om") == 0) {  // START-UP ATM KEY = "885265om"
 
       system("clear");
       options();
@@ -137,7 +141,7 @@ void read() {   //sign in
     char *PASSER = strtok(NULL, ",");
 
       int mUsername = strcmp(user, USER);
-      int mPassword = strcmp(pwd, PASSER);  //return value of 0 iff == 0
+      int mPassword = strcmp(pwd, PASSER);  //return value of 0 iff srtings are same
 
   //    printf("%d username: %s\n", mUsername, USER);      ~ method of login system ~
   //    printf("%d password: %s\n", mPassword, PASSER);    ~ strcmp return value and string organized in a nice terminal ~
@@ -206,7 +210,7 @@ void proposal(float iSavings, float iChequings) {
 
   } else {
 
-// exit back to main menu, do this after
+// exit back to main menu, write this ASAP
 
   }
 
@@ -228,17 +232,13 @@ void withdraw(float iSavings, float iChequings) {
 
   if (CHOICE == 1) {
 
-    printf("\nHow much?\n\n -> $");
-    scanf("%f", &subChequings);
-    nChequings = iChequings - subChequings;
-    //printf("\nNew CHEQUINGS account value: %.2f\n", nChequings);
+    float x = sub_from_chequings(nChequings, iChequings, subChequings);
+    printf("%.2f\n", x);
 
   } else if (CHOICE == 2) {
 
-    printf("\nHow much?\n\n -> $");
-    scanf("%f", &subSavings);
-    nSavings = iSavings - subSavings;
-    //printf("\nNew SAVINGS account value: %.2f\n", nSavings);
+    float x = sub_from_savings(nSavings, iSavings, subSavings);
+    printf("%.2f\n", x);
 
   } else {
 
@@ -264,23 +264,55 @@ void deposit(float iSavings, float iChequings) {
 
   if (CHOICE == 1) {
 
+    float x = add_to_chequings(nChequings, iChequings, addChequings);
+    printf("%.2f\n", x);
+
+  } else if (CHOICE == 2) {
+
+    float x = add_to_savings(nSavings, iSavings, addSavings);
+    printf("%.2f\n", x);
+
+  } else {
+
+    exit(EXIT_FAILURE); //goto this, fam
+
+  }
+
+}
+
+float add_to_chequings(float nChequings, float iChequings, float addChequings) {
+
     printf("\nHow much?\n\n -> $");
     scanf("%f", &addChequings);
     nChequings = iChequings + addChequings;
-    //printf("\nNew CHEQUINGS account value: %.2f\n", nChequings);
+    return nChequings;
 
-  } else if (CHOICE == 2) {
+}
+
+float sub_from_chequings(float nChequings, float iChequings, float subChequings) {
+
+    printf("\nHow much?\n\n -> $");
+    scanf("%f", &subChequings);
+    nChequings = iChequings - subChequings;
+    return nChequings;
+
+}
+
+float add_to_savings(float nSavings, float iSavings, float addSavings) {
 
     printf("\nHow much?\n\n -> $");
     scanf("%f", &addSavings);
     nSavings = iSavings + addSavings;
-    //printf("\nNew SAVINGS account value: %.2f\n", nSavings);
+    return nSavings;
 
-  } else {
+}
 
-    exit(EXIT_FAILURE);
+float sub_from_savings(float nSavings, float iSavings, float subSavings) {
 
-  }
+    printf("\nHow much?\n\n -> $");
+    scanf("%f", &subSavings);
+    nSavings = iSavings - subSavings;
+    return nSavings;
 
 }
 
