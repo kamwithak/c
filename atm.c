@@ -15,8 +15,12 @@ float sub_from_savings(float nSavings, float iSavings, float subSavings);
 void transaction_type(float iSavings, float iChequings);
 void withdraw(float iSavings, float iChequings);
 void deposit(float iSavings, float iChequings);
+void transaction();
+void transaction_success(float nS, float nC);
+void transaction_failure(float iS, float iC);
 void final_info();
-void receipt();
+void granted();
+int negative_checker(float nC, float nS, float nT);
 void atm();
 void sign_in();
 void create_an_account();
@@ -24,7 +28,6 @@ void create_an_account();
 int main(void) {
 
   init();
-
   return 0;
 
 }
@@ -92,6 +95,29 @@ int framework(int option) {
 
 }
 
+void create_an_account(void) {   //create an account
+
+  char user[50], pwd[50];
+  printf("MENU ~ CREATE AN ACCOUNT\n");
+  printf("------------------------");
+
+  printf("\nUsername: ");
+  scanf("%s", user);
+  printf("PIN #: ");
+  scanf("%s", pwd);
+
+  FILE *file;
+  file = fopen("accounts.csv", "a");
+
+  fprintf(file, "%s,%s,%s\n", user, pwd, "\0");
+  fclose(file);
+  system("clear");
+
+  printf("\nSuccesfully Created Account! ~ \n");
+  options();
+
+}
+
 void sign_in(void) {   //sign in
 
   char user[50], pwd[50], line[50];
@@ -120,7 +146,7 @@ void sign_in(void) {   //sign in
     if (mUsername == 0 && mPassword == 0) {
 
       fclose(file);
-      atm();
+      granted();
       exit(EXIT_SUCCESS); //leave function
 
     }
@@ -134,35 +160,17 @@ void sign_in(void) {   //sign in
 
 }
 
-void create_an_account(void) {   //create an account
-
-  char user[50], pwd[50];
-  printf("MENU ~ CREATE AN ACCOUNT\n");
-  printf("------------------------");
-
-  printf("\nUsername: ");
-  scanf("%s", user);
-  printf("PIN #: ");
-  scanf("%s", pwd);
-
-  FILE *file;
-  file = fopen("accounts.csv", "a");
-
-  fprintf(file, "%s,%s,%s\n", user, pwd, "\0");
-  fclose(file);
-  system("clear");
-
-  printf("\nSuccesfully Created Account! ~ \n");
-  options();
-
-}
-
-void atm(void) {
+void granted(void) {
 
   system("clear");
   printf("\n * Authentication Successful *");
   printf("\n  * Welcome to the C.C ATM! *");
   printf("\n    ----------$$$----------\n\n");
+  atm();
+
+}
+
+void atm(void) {
 
   float iChequings;
   float iSavings;
@@ -221,13 +229,39 @@ void withdraw(float iSavings, float iChequings) {
 
   if (CHOICE == 1) {
 
-    float x = sub_from_chequings(nChequings, iChequings, subChequings);
-    printf("%.2f\n", x);
+    nChequings = sub_from_chequings(nChequings, iChequings, subChequings);
+    nSavings = iSavings;
+    nTotal = nChequings + nSavings;
+
+    int x = negative_checker(nChequings, nSavings, nTotal);
+    
+    if (x == 1) {
+
+      transaction_success(nSavings, nChequings);
+    
+    } else {
+
+      transaction_failure(iSavings, iChequings);
+      
+    }
 
   } else if (CHOICE == 2) {
 
-    float x = sub_from_savings(nSavings, iSavings, subSavings);
-    printf("%.2f\n", x);
+    nSavings = sub_from_savings(nSavings, iSavings, subSavings);
+    nChequings = iChequings;
+    nTotal = nSavings + nChequings;
+
+    int x = negative_checker(nChequings, nSavings, nTotal);
+    
+    if (x == 1) {
+
+      transaction_success(nSavings, nChequings);
+    
+    } else {
+
+      transaction_failure(iSavings, iChequings);
+      
+    }
 
   } else {
 
@@ -253,13 +287,39 @@ void deposit(float iSavings, float iChequings) {
 
   if (CHOICE == 1) {
 
-    float x = add_to_chequings(nChequings, iChequings, addChequings);
-    printf("%.2f\n", x);
+    nChequings = add_to_chequings(nChequings, iChequings, addChequings);
+    nSavings = iSavings;
+    nTotal = nChequings + nSavings;
+
+    int x = negative_checker(nChequings, nSavings, nTotal);
+
+    if (x == 1) {
+
+      transaction_success(nSavings, nChequings);
+    
+    } else {
+
+      transaction_failure(iSavings, iChequings);
+
+    }
 
   } else if (CHOICE == 2) {
 
-    float x = add_to_savings(nSavings, iSavings, addSavings);
-    printf("%.2f\n", x);
+    nSavings = add_to_savings(nSavings, iSavings, addSavings);
+    nChequings = iChequings;
+    nTotal = nSavings + nChequings;
+
+    int x = negative_checker(nChequings, nSavings, nTotal);
+
+    if (x == 1) {
+
+      transaction_success(nSavings, nChequings);
+    
+    } else {
+
+      transaction_failure(iSavings, iChequings);
+      
+    }
 
   } else {
 
@@ -271,52 +331,98 @@ void deposit(float iSavings, float iChequings) {
 
 float add_to_chequings(float nChequings, float iChequings, float addChequings) {
 
-    printf("\nHow much?\n\n -> $");
-    scanf("%f", &addChequings);
-    nChequings = iChequings + addChequings;
-    return nChequings;
+  printf("\nHow much?\n\n -> $");
+  scanf("%f", &addChequings);
+  nChequings = iChequings + addChequings;
+  return nChequings;
 
 }
 
 float sub_from_chequings(float nChequings, float iChequings, float subChequings) {
 
-    printf("\nHow much?\n\n -> $");
-    scanf("%f", &subChequings);
-    nChequings = iChequings - subChequings;
-    return nChequings;
+  printf("\nHow much?\n\n -> $");
+  scanf("%f", &subChequings);
+  nChequings = iChequings - subChequings;
+  return nChequings;
 
 }
 
 float add_to_savings(float nSavings, float iSavings, float addSavings) {
 
-    printf("\nHow much?\n\n -> $");
-    scanf("%f", &addSavings);
-    nSavings = iSavings + addSavings;
-    return nSavings;
+  printf("\nHow much?\n\n -> $");
+  scanf("%f", &addSavings);
+  nSavings = iSavings + addSavings;
+  return nSavings;
 
 }
 
 float sub_from_savings(float nSavings, float iSavings, float subSavings) {
 
-    printf("\nHow much?\n\n -> $");
-    scanf("%f", &subSavings);
-    nSavings = iSavings - subSavings;
-    return nSavings;
+  printf("\nHow much?\n\n -> $");
+  scanf("%f", &subSavings);
+  nSavings = iSavings - subSavings;
+  return nSavings;
+
+}
+
+void transaction_failure(float iS, float iC) {
+  
+  char msg[] = "\nERROR, not enough $'s in account... \nGo ahead and perform another transaction!";
+  printf("%s\n", msg);
+ // printf("%f %f", iS, iC); figure out how to fix these account values back to initial or just call atm();
+  transaction_type(iS, iC);
+
+}
+
+void transaction_success(float nS, float nC) {
+
+  char msg[] = "\nSuccessful Transaction";
+  char quest[] = "1 = MAKE ANOTHER TRANSACTION\n2 = VIEW FINAL BALANCE\n3 = EXIT";
+  int CHOICE;
+
+  printf("%s\n", msg);
+  printf("-----------------------\n");
+  printf("%s\n\n-> ", quest);
+  scanf("%d", &CHOICE);
+
+  while(1) {
+
+    if(CHOICE == 1) {
+
+      transaction_type(nS, nC);
+
+    } else if(CHOICE == 2) {
+
+      // final_info();
+
+    } else {
+
+      exit(EXIT_SUCCESS);
+
+    }
+
+      break;
+  }
+
+
+}
+
+int negative_checker(float nC, float nS, float nT) {
+
+  if (nC < 0 || nS < 0 || nT < 0) { // if any account holds a value of negative the function returns 0, otherwise 1;
+
+    return 0;
+
+  } else {
+
+    return 1;
+
+  }
 
 }
 
 void final_info() {
 
-  //display all information of new account balances in terminal using for loop
-  //"CURRENT ACCOUNT VALUE", keep things consistent
-  //arguments needed before anything else
 
 }
 
-void receipt() {
-
-  //create a file (.txt) receipt for transaction and create that in a specific directory
-
-}
-
-  //figure out way to add a "make another transaction" feature. ex) goto
