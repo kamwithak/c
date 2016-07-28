@@ -3,7 +3,7 @@
 #include <string.h>
 
 /* LOGIN SYSTEM, ATM SIMULATION, MANIPULATION OF FILE I/O USING C
-~ KAMRAN WITH A K, LAST UPDATED JULY 26th, 2016 ~  */
+~ KAMRAN WITH A K, LAST UPDATED JULY 27th, 2016 ~  */
 
 void init();
 void options();
