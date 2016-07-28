@@ -7,7 +7,7 @@
 
 void init();
 void options();
-int framework(int option);
+void framework(int option);
 float add_to_chequings(float nChequings, float iChequings, float addChequings);
 float sub_from_chequings(float nChequings, float iChequings, float subChequings);
 float add_to_savings(float nSavings, float iSavings, float addSavings);
@@ -79,19 +79,17 @@ void options(void) {
 
 }
 
-int framework(int option) {
+void framework(int option) {
 
   if (option == 1) {
-	
-	  sign_in();
+
+    sign_in();
 
   } else {
 
     create_an_account();
 
   }
-
-  return 0;
 
 }
 
@@ -367,16 +365,16 @@ float sub_from_savings(float nSavings, float iSavings, float subSavings) {
 
 void transaction_failure(float iS, float iC) {
   
-  char msg[] = "\nERROR, not enough $'s in account... \nGo ahead and perform another transaction!";
+  char msg[] = "\nTransaction Incomplete!\nNot enough funds in account... try again!";
   printf("%s\n", msg);
- // printf("%f %f", iS, iC); figure out how to fix these account values back to initial or just call atm();
+  printf("%f %f", iS, iC); //comment out later
   transaction_type(iS, iC);
 
 }
 
 void transaction_success(float nS, float nC) {
 
-  char msg[] = "\nSuccessful Transaction";
+  char msg[] = "\nSuccessful Transaction!";
   char quest[] = "1 = MAKE ANOTHER TRANSACTION\n2 = VIEW FINAL BALANCE\n3 = EXIT";
   int CHOICE;
 
@@ -385,15 +383,16 @@ void transaction_success(float nS, float nC) {
   printf("%s\n\n-> ", quest);
   scanf("%d", &CHOICE);
 
-  while(1) {
+  for(;;) {
 
     if(CHOICE == 1) {
 
+      printf("%f %f", nS, nC); //comment out later
       transaction_type(nS, nC);
 
     } else if(CHOICE == 2) {
 
-      // final_info();
+      // final_info(); WORK ON THIS NEXT. BRAIN STORM TIME.
 
     } else {
 
@@ -401,7 +400,7 @@ void transaction_success(float nS, float nC) {
 
     }
 
-      break;
+        break; //NOTE FOR ME: not sure if need break; here, once program is complete, get rid of this and see what's good.
   }
 
 
@@ -425,4 +424,3 @@ void final_info() {
 
 
 }
-
