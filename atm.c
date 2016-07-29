@@ -3,10 +3,10 @@
 #include <string.h>
 
 /* LOGIN SYSTEM, ATM SIMULATION, MANIPULATION OF FILE I/O USING C
-~ KAMRAN WITH A K, LAST UPDATED JULY 27th, 2016 ~  */
+~ KAMRAN WITH A K, LAST UPDATED JULY 29th, 2016 ~  */
 
-void init();
-void options();
+void init(void);
+void options(void);
 void framework(int option);
 float add_to_chequings(float nChequings, float iChequings, float addChequings);
 float sub_from_chequings(float nChequings, float iChequings, float subChequings);
@@ -15,15 +15,15 @@ float sub_from_savings(float nSavings, float iSavings, float subSavings);
 void transaction_type(float iSavings, float iChequings);
 void withdraw(float iSavings, float iChequings);
 void deposit(float iSavings, float iChequings);
-void transaction();
-void transaction_success(float nS, float nC);
+void transaction(void);
+void transaction_success(float nS, float nC, float nT);
 void transaction_failure(float iS, float iC);
-void final_info();
-void granted();
-int negative_checker(float nC, float nS, float nT);
-void atm();
-void sign_in();
-void create_an_account();
+void final_info(float nS, float nC, float nT);
+void granted(void);
+int negative_checker(float nS, float nC, float nT);
+void atm(void);
+void sign_in(void);
+void create_an_account(void);
 
 int main(void) {
 
@@ -71,11 +71,9 @@ void options(void) {
 
     framework(option);  //calling framework for atm
 
-  } else {
+  } 
 
-    goto stop;
-
-  }
+  goto stop;
 
 }
 
@@ -191,8 +189,8 @@ void transaction_type(float iSavings, float iChequings) {
 
   int CHOICE;
 
-  printf("\nWould you like to WITHDRAW or DEPOSIT?\n");
-  printf("      1 = WITHDRAW  2 = DEPOSIT\n\n -> ");
+  printf("\nWould you like to WITHDRAW, DEPOSIT, or RETURN TO MAIN MENU?\n");
+  printf("     1 = WITHDRAW  2 = DEPOSIT  3 = RETURN TO MAIN MENU\n\n -> ");
   scanf("%d", &CHOICE);
 
   if (CHOICE == 1) {
@@ -205,7 +203,8 @@ void transaction_type(float iSavings, float iChequings) {
 
   } else {
 
-// exit back to main menu, write this ASAP
+    system("clear");
+    options();
 
   }
 
@@ -213,13 +212,11 @@ void transaction_type(float iSavings, float iChequings) {
 
 void withdraw(float iSavings, float iChequings) {
 
-// bring the variables into this function using arguments -> conduct transaction -> sperate function that prints final balance
-// -> option to perform another transaction or main menu
-
   int CHOICE;
   char type[] = "WITHDRAW";
   float subSavings, subChequings;
   float nSavings, nChequings, nTotal;
+  KONG:
 
   printf("\nWhich account would you like to %s from?\n", type);
   printf("      1 = CHEQUINGS  2 = SAVINGS\n\n -> ");
@@ -231,16 +228,20 @@ void withdraw(float iSavings, float iChequings) {
     nSavings = iSavings;
     nTotal = nChequings + nSavings;
 
-    int x = negative_checker(nChequings, nSavings, nTotal);
+    int x = negative_checker(nSavings, nChequings, nTotal);
     
     if (x == 1) {
 
-      transaction_success(nSavings, nChequings);
+      transaction_success(nSavings, nChequings, nTotal);
     
-    } else {
+    } else if (x == 0) {
 
       transaction_failure(iSavings, iChequings);
       
+    } else {
+
+      goto KONG;
+
     }
 
   } else if (CHOICE == 2) {
@@ -249,35 +250,33 @@ void withdraw(float iSavings, float iChequings) {
     nChequings = iChequings;
     nTotal = nSavings + nChequings;
 
-    int x = negative_checker(nChequings, nSavings, nTotal);
+    int x = negative_checker(nSavings, nChequings, nTotal);
     
     if (x == 1) {
 
-      transaction_success(nSavings, nChequings);
+      transaction_success(nSavings, nChequings, nTotal);
     
+    } else if (x == 0) {
+
+        transaction_failure(iSavings, iChequings);
+      
     } else {
 
-      transaction_failure(iSavings, iChequings);
-      
+        goto KONG;
+
     }
 
-  } else {
-
-    exit(EXIT_FAILURE);
-
-  }
+  } 
 
 }
 
 void deposit(float iSavings, float iChequings) {
 
-// bring the variables into this function using arguments -> conduct transaction -> sperate function that prints final balance
-// -> option to perform another transaction or main menu
-
   int CHOICE;
   char type[] = "DEPOSIT";
   float addSavings, addChequings;
   float nSavings, nChequings, nTotal;
+  KONG:
 
   printf("\nWhich account would you like to %s money into?\n", type);
   printf("      1 = CHEQUINGS  2 = SAVINGS\n\n -> ");
@@ -289,15 +288,19 @@ void deposit(float iSavings, float iChequings) {
     nSavings = iSavings;
     nTotal = nChequings + nSavings;
 
-    int x = negative_checker(nChequings, nSavings, nTotal);
+    int x = negative_checker(nSavings, nChequings, nTotal);
 
     if (x == 1) {
 
-      transaction_success(nSavings, nChequings);
+      transaction_success(nSavings, nChequings, nTotal);
     
-    } else {
+    } else if (x == 0) {
 
       transaction_failure(iSavings, iChequings);
+
+    } else {
+
+      goto KONG;
 
     }
 
@@ -307,23 +310,23 @@ void deposit(float iSavings, float iChequings) {
     nChequings = iChequings;
     nTotal = nSavings + nChequings;
 
-    int x = negative_checker(nChequings, nSavings, nTotal);
+    int x = negative_checker(nSavings, nChequings, nTotal);
 
     if (x == 1) {
 
-      transaction_success(nSavings, nChequings);
+      transaction_success(nSavings, nChequings, nTotal);
     
-    } else {
+    } else if (x == 0) {
 
       transaction_failure(iSavings, iChequings);
       
+    } else {
+
+      goto KONG;
+
     }
 
-  } else {
-
-    exit(EXIT_FAILURE); //goto this, fam
-
-  }
+  } 
 
 }
 
@@ -365,14 +368,13 @@ float sub_from_savings(float nSavings, float iSavings, float subSavings) {
 
 void transaction_failure(float iS, float iC) {
   
-  char msg[] = "\nTransaction Incomplete!\nNot enough funds in account... try again!";
+  char msg[] = "\nTransaction Incomplete!\nNot enough $$$'s... try again.";
   printf("%s\n", msg);
-  printf("%f %f", iS, iC); //comment out later
   transaction_type(iS, iC);
 
 }
 
-void transaction_success(float nS, float nC) {
+void transaction_success(float nS, float nC, float nT) {
 
   char msg[] = "\nSuccessful Transaction!";
   char quest[] = "1 = MAKE ANOTHER TRANSACTION\n2 = VIEW FINAL BALANCE\n3 = EXIT";
@@ -385,14 +387,13 @@ void transaction_success(float nS, float nC) {
 
   for(;;) {
 
-    if(CHOICE == 1) {
+    if (CHOICE == 1) {
 
-      printf("%f %f", nS, nC); //comment out later
-      transaction_type(nS, nC);
+     	transaction_type(nS, nC);
 
-    } else if(CHOICE == 2) {
+    } else if (CHOICE == 2) {
 
-      // final_info(); WORK ON THIS NEXT. BRAIN STORM TIME.
+    	final_info(nS, nC, nT);
 
     } else {
 
@@ -406,21 +407,29 @@ void transaction_success(float nS, float nC) {
 
 }
 
-int negative_checker(float nC, float nS, float nT) {
+int negative_checker(float nS, float nC, float nT) {
 
-  if (nC < 0 || nS < 0 || nT < 0) { // if any account holds a value of negative the function returns 0, otherwise 1;
+  if (nC < 0 || nS < 0 || nT < 0) {
 
-    return 0;
+    	return 0;
 
   } else {
 
-    return 1;
+    	return 1;
 
   }
 
 }
 
-void final_info() {
+void final_info(float nS, float nC, float nT) {
 
+  char banner[] = "\nFinal Balance!";
+  char line[] = "--------------";
+
+  printf("%s\n%s\n", banner, line);
+  printf("CHEQUINGS -> $%.2f\n", nC);
+  printf("SAVINGS -> $%.2f\n", nS);
+  printf("~~~~~~~~~~~~~~~~~~~~~~\n");
+  printf("TOTAL ACCOUNT VALUE -> $%.2f\n\n", nT);
 
 }
