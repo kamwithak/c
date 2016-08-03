@@ -401,7 +401,7 @@ void transaction_success(float nS, float nC, float nT) {
 
     }
 
-        break; //deal with loop sequence and break; later
+        break; //edit this, break; and loop are pointless here
   }
 
 
