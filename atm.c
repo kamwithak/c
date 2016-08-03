@@ -2,8 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 
-/* LOGIN SYSTEM, ATM SIMULATION, MANIPULATION OF FILE I/O USING C
-~ KAMRAN WITH A K, LAST UPDATED JULY 29th, 2016 ~  */
+/* LOGIN SYSTEM, ATM SIMULATION, MANIPULATION OF FILE I/O.
+  LAST UPDATED JULY 29th, 2016 ~  */
 
 void init(void);
 void options(void);
