@@ -389,7 +389,7 @@ void transaction_success(float nS, float nC, float nT) {
 
     if (CHOICE == 1) {
 
-     	transaction_type(nS, nC);
+      transaction_type(nS, nC);
 
     } else if (CHOICE == 2) {
 
