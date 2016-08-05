@@ -1,4 +1,4 @@
 #.c files worth looking at
 
-especially this one -> atm.c  
+(atm.c) -> ATM simulation, login system, manipulation of file i/o 
 
