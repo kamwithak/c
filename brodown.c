@@ -10,11 +10,13 @@ int main()
 }
 int init()
 {
-  int agree;
+	int agree;
+  
 	printf("The goal of this game is to get 10 Bro Downs....\n");
-	args:
+		args:
 	printf("Would you like to play?  Yes = 1  No = 2\n");
 	scanf("%d", &agree);
+	
 	if(agree == 1) {
 		printf("Lets play! Hit ENTER!\n");
 		getchar();
@@ -22,8 +24,8 @@ int init()
 	} else if(agree == 2){
 		return 0;
 	} else { 
-	printf("Incorrect Input... \n");
-	goto args;
+		printf("Incorrect Input... \n");
+		goto args;
 	}	
 }
 int brodown() //the program
@@ -42,6 +44,6 @@ int brodown() //the program
 			getchar();
 		}
 	}
-	getchar(); //new character
+	getchar();
     return 0;
 }
