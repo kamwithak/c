@@ -1,4 +1,4 @@
-#-> .c files worth looking at
+#.c files worth looking at
 
 especially this one -> atm.c  
 
