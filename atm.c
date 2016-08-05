@@ -258,11 +258,11 @@ void withdraw(float iSavings, float iChequings) {
     
     } else if (x == 0) {
 
-        transaction_failure(iSavings, iChequings);
+      transaction_failure(iSavings, iChequings);
       
     } else {
 
-        goto KONG;
+      goto KONG;
 
     }
 
@@ -393,7 +393,7 @@ void transaction_success(float nS, float nC, float nT) {
 
     } else if (CHOICE == 2) {
 
-    	final_info(nS, nC, nT);
+      final_info(nS, nC, nT);
 
     } else {
 
@@ -401,7 +401,7 @@ void transaction_success(float nS, float nC, float nT) {
 
     }
 
-        break; //edit this, break; and loop are pointless here
+    break; //edit this, break; and loop are pointless here
   }
 
 
@@ -411,11 +411,11 @@ int negative_checker(float nS, float nC, float nT) {
 
   if (nC < 0 || nS < 0 || nT < 0) {
 
-    	return 0;
+    return 0;
 
   } else {
 
-    	return 1;
+    return 1;
 
   }
 
