@@ -31,7 +31,7 @@ void getComparison(int input, int target) {
 		exit(EXIT_SUCCESS);
 
 	} 
-			// put the strings of this function into array's
+			// put the strings of this function into an array later
 }
 
 void cycle(int target) {
