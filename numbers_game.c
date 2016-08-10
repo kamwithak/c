@@ -25,7 +25,7 @@ void getComparison(int input, int target) {
 		printf("Lower...\n");
 		cycle(target);
 
-	} else if (target == input) {
+	} else {
 
 		printf("Correct guess! TARGET NUMBER = %d\n", target);
 		exit(EXIT_SUCCESS);
