@@ -28,7 +28,7 @@ int init()
 		goto args;
 	}	
 }
-int brodown() //the program
+int brodown() 
 {
     for(int eric = 0; eric <= 100; eric++) {
 		if(eric == 0)
