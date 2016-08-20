@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-void converter() {
+void converter(void) {
 
     int x = 0;
     int fahr, celsius;
