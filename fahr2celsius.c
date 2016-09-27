@@ -17,7 +17,7 @@ void converter(void) {
         printf("Fahrenheit\tCelsius\n");
         x++;
       
-  }
+    }
 
     while (fahr <= upper) {
 
@@ -25,7 +25,7 @@ void converter(void) {
         printf("%d\t\t%d\n", fahr, celsius);
         fahr = fahr + step;
       
-  }
+    }
 
 }
 
