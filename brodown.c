@@ -35,7 +35,7 @@ int brodown()
 			continue;
 		else if(eric > 10) {
 			printf("//////////////////////////////////\n");
-			printf("\nYou got 10 Bro Downs, you won faggot!\nHit enter to exit...");
+			printf("\nYou got 10 Bro Downs, you won!\nHit enter to exit...");
 			break;
 		} else {
 			printf("%d. ", eric);
