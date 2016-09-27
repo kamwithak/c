@@ -1,7 +1,7 @@
 #include <stdio.h>
 
 void converter(void) {
-
+    
     int x = 0;
     int fahr, celsius;
     int lower, upper, step;
@@ -11,24 +11,27 @@ void converter(void) {
     step = 20;
 
 
-  while (x == 0) {
-      fahr = lower;
-      printf("Fahrenheit\tCelsius\n");
-      x++;
+    while (x == 0) {
+      
+        fahr = lower;
+        printf("Fahrenheit\tCelsius\n");
+        x++;
+      
   }
 
-  while (fahr <= upper) {
+    while (fahr <= upper) {
 
-      celsius = 5 * (fahr-32) / 9;
-      printf("%d\t\t%d\n", fahr, celsius);
-      fahr = fahr + step;
+        celsius = 5 * (fahr-32) / 9;
+        printf("%d\t\t%d\n", fahr, celsius);
+        fahr = fahr + step;
+      
   }
 
 }
 
 int main() {
 
- converter();
- return 0;
+    converter();
+    return 0;
 
 }
