@@ -1,14 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 /*
-	PROGRAM ASSUMES A TEXT FILE WITH NO ZERO VALUES
-	ASSUMPTION MADE BECAUSE SEQUENCES START AT ONE 
-	WRITTEN BY KAMRAN CHOUDHRY 
+    PROGRAM ASSUMES A TEXT FILE WITH NO ZERO VALUES
+    ASSUMPTION MADE BECAUSE SEQUENCES START AT ONE 
+    WRITTEN BY KAMRAN CHOUDHRY 
 */
 
 int fib(int n) {
 
-	//fibonacci sequence algorithm
+    //fibonacci sequence algorithm
     int f[n+1];
     f[1] = f[2] = 1;
 
@@ -46,8 +46,8 @@ void fetch(int arr[], int sum) {
 
 int main(int argc, char *argv[]) {
 
-	//open "input.txt" in reading mode
-	FILE *input;
+    //open "input.txt" in reading mode
+    FILE *input;
     input = fopen("input.txt", "r");
 
     //init array
