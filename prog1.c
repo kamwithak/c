@@ -70,7 +70,7 @@ int main(int argc, char *argv[]) {
         if (arr[i] == 0)
         	break;
 
-		sum += arr[i];
+	sum += arr[i];
 
     }
 
