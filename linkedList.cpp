@@ -234,59 +234,6 @@ class SuperDraw {                           // LinkedList class representation
 
 };
 
-// * PLEASE COMMENT/UNCOMMENT main()'s TO COMPILE/RUN RESPECTIVE QUESTIONS:
-
-/*  // Q2:
-int main() {
-    SuperDraw sd;
-    sd.newTicket(1);
-    sd.newTicket(1);
-    sd.newTicket(1);
-    //cout << sd.getSize() << endl;
-    return 0;
-}
-*/
-
-/*  // Q3:
-int main() {
-    SuperDraw sd(2);
-    //cout << sd.getSize() << endl;
-    return 0;
-}
-*/
-
-/*  // Q4:
-int main() {
-    SuperDraw sd;
-    sd.newTicket();
-    sd.newTicket();
-    sd.newTicket();
-    sd.newTicket();
-    sd.newTicket();
-    sd.newTicket();
-    sd.printAllTicketNumbers();
-    //cout << sd.getSize() << endl;
-    return 0;
-}
-*/
-
-/*
-  // Q5:
-int main() {
-    SuperDraw sd;
-    sd.newTicket(1);
-    sd.newTicket(1);
-    sd.newTicket(1);
-    sd.newTicket(1);
-    int myNumbers[6] = {7,8,13,14,20,22};
-    sd.verifySequence(myNumbers);
-    //cout << sd.getSize() << endl;
-    return 0;
-}
- */
-
-// Q6:
-
 int main() {
 
     SuperDraw sd;
