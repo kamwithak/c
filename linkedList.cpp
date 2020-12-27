@@ -249,7 +249,7 @@ int main() {
 
     sd.printAllTicketNumbers();
 
-    //SuperDraw sd2(sd);                    // implemented incorrectly
+    //SuperDraw sd2(sd);
     //cout << sd.getSize() << endl;
     return 0;
 }
